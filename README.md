@@ -29,3 +29,6 @@ One of friend uses this on daily basis (almost everyday, multiple times). The re
 
 * Very simple UI, lightweight
 
+### Initial sketch
+
+![sketch-image](https://drive.google.com/file/d/1oNSIq496DNTipo5cmGty1g-3IpEJelVY/view?usp=sharing)
