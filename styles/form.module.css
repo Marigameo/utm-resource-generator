@@ -1,0 +1,23 @@
+.displayInline {
+    display: flex;
+    flex-direction: row;
+}
+.row1 {
+    margin: 50px;
+}
+.row2 {
+    margin-bottom: 20px;
+}
+.mgT20 {
+    margin-top: 20px;
+}
+.textarea {
+    width: 700px;
+}
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

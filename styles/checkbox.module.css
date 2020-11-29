@@ -1,0 +1,13 @@
+.checkbox {
+    transform: scale(2);
+    -ms-transform: scale(2);
+    -webkit-transform: scale(2);
+    padding: 10px;
+    margin: 10px;
+}
+
+.label {
+    margin-top: 10px;
+    font-size: '20px';
+    margin-right: 30px;
+}
