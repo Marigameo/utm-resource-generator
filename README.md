@@ -31,3 +31,4 @@ One of friend uses this on daily basis (almost everyday, multiple times). The re
 
 ### Initial sketch
 
+[sketch](.github/sketch.jpg)
