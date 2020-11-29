@@ -1,4 +1,4 @@
-# utm-resource-generator
+# utm-resource-generator  [currently in dev]
 Customizable utm resource generator - Next.JS
 
 ### Setting up local environment
