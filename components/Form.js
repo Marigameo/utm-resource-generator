@@ -2,19 +2,13 @@ import React, { useState } from 'react'
 import Checkbox from './Checkbox'
 import Input from './Input'
 import styles from '../styles/form.module.css'
+import ResultArea from './ResultArea'
 export default function Form () {
     const [isMediumVisible, setMediumVisible] = useState(false)
     const [isContentVisible, setContentVisible] = useState(false)
     const [isTermVisible, setTermVisible] = useState(false)
-    const [copySuccess, setCopySuccess] = useState('');
-    const copyToClipBoard = async copyMe => {
-        try {
-            await navigator.clipboard.writeText(copyMe);
-            setCopySuccess('Copied!');
-        } catch (err) {
-            setCopySuccess('Failed to copy!');
-        }
-    };
+    const [isInstagramVisible, setInstagramVisible] = useState(false)
+
     return (
         <>
             <div className={styles.displayInline}>
@@ -39,9 +33,16 @@ export default function Form () {
                 <Checkbox>Instagram</Checkbox>
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20}>
-                <textarea className={styles.textarea}></textarea>
-                <button onClick={() => copyToClipBoard('some text to copy')}>Click here to copy</button>
-                {copySuccess}
+                <ResultArea>Linkedin</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20}>
+                <ResultArea>Facebook</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20}>
+                <ResultArea>Twitter</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isMediumVisible ? styles.visible : styles.hidden}`}>
+                <ResultArea>Instagram</ResultArea>
             </div>
         </>
     )
