@@ -41,7 +41,7 @@ export default function Form () {
             <div className={styles.displayInline + ' ' + styles.mgT20}>
                 <ResultArea>Twitter</ResultArea>
             </div>
-            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isMediumVisible ? styles.visible : styles.hidden}`}>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isInstagramVisible ? styles.visible : styles.hidden}`}>
                 <ResultArea>Instagram</ResultArea>
             </div>
         </>
