@@ -1,20 +1,68 @@
-.displayInline {
-    display: flex;
-    flex-direction: row;
-}
-.row1 {
-    margin: 50px;
-}
-.row2 {
-    margin-bottom: 20px;
-}
 .mgT20 {
     margin-top: 20px;
 }
 .visible {
-    display: flex;
+    display: inline;
 }
-
+.displayInline {
+  display: flex;
+  min-width: 90%;
+}
 .hidden {
     display: none;
 }
+.containerRow {
+    display: flex;
+    flex-direction: row;
+}
+.containerColumn {
+    margin: 10px;
+}
+.wrapper {
+    background-color: whitesmoke;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+    padding: 2em;
+  }
+  .row {
+    display: flex;
+    justify-content: flex-end;
+    padding: .5em;
+  }
+  .row > label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+  }
+  .row > input {
+    flex: 2;
+  }
+  .row > input {
+    padding: .5em;
+  }
+ @media screen and (min-width: 768px) {
+   	.row > input {
+    	flex: 3;  
+   }
+  }
+ @media screen and (min-width: 992px) {
+   	.row > input {
+    	flex: 4;  
+   }
+  }
+ @media screen and (min-width: 1200px) {
+   	.row > input {
+    	flex: 5;  
+   }
+  }
+  @media screen and (max-width: 768px) {
+    .containerRow {
+      flex-direction: column;
+    }
+    .mbOnly {
+      width: 80%;
+    }
+    .displayInline {
+      min-width: 70%;
+    }
+  }

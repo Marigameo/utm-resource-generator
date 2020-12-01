@@ -16,8 +16,10 @@ export default function Home () {
         </h6>
 
         <p className={styles.description}>
-          Customize and save time {' '}
-          <code className={styles.code}>UTM's made easy</code>
+          Customize URLs {' - '}
+          <code className={styles.code}>For your Custom Campaigns
+
+</code>
         </p>
         <Form />
       </main>

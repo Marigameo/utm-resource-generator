@@ -8,14 +8,14 @@ export default function Checkbox (props) {
             case 'source':
                 return (
                     <>
-                        <input type="checkbox" className={styles.checkbox} onChange={() => setSourceVisible(!isSourceVisible)}></input>
+                        <input type="checkbox" className={styles.checkbox} onChange={() => setSourceVisible(!isSourceVisible)} checked={isSourceVisible}></input>
                         <span className={styles.label}>{props.children}</span>
                     </>
                 )
             case 'medium':
                 return (
                     <>
-                        <input type="checkbox" className={styles.checkbox} onChange={() => setMediumVisible(!isMediumVisible)}></input>
+                        <input type="checkbox" className={styles.checkbox} onChange={() => setMediumVisible(!isMediumVisible)} checked={isMediumVisible}></input>
                         <span className={styles.label}>{props.children}</span>
                     </>
                 )
@@ -65,7 +65,6 @@ export default function Checkbox (props) {
         }
     }
     const checkbox = keyType ? checkType() : null;
-    console.log(checkbox)
     return (
         <span>{checkbox}</span>
     )
