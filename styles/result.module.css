@@ -1,5 +1,6 @@
 .button {
     cursor: pointer;
+    width: 40px;
 }
 
 .mgMSG {
@@ -9,6 +10,7 @@
 
 .textarea {
     width: 80%;
+    height: 54px;
 }
 
 .label {

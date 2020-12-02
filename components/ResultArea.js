@@ -33,7 +33,7 @@ export default function ResultArea (props) {
 
     return (
         <>
-            <span className={styles.label}>{props.children}</span><textarea className={styles.textarea} ref={textInput}></textarea>
+            <span className={styles.label}>{props.children}</span><textarea row="4" className={styles.textarea} ref={textInput} value={props.result} readOnly></textarea>
             <button onClick={copyLink} className={styles.button}><FaRegClipboard /></button>
             <span className={styles.mgMSG}>{copySuccess}</span>
         </>

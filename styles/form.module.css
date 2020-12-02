@@ -8,6 +8,10 @@
   display: flex;
   min-width: 90%;
 }
+.resultButton {
+  width: 300px;
+  height: 300px;
+}
 .hidden {
     display: none;
 }
