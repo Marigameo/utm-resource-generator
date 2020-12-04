@@ -136,44 +136,44 @@ export default function Form () {
     return (
         <>
             <div className={styles.mbOnly}>
-                <Checkbox keyType="source" isSourceVisible={isSourceVisible} setSourceVisible={setSourceVisible}>Source</Checkbox>
-                <Checkbox keyType="medium" isMediumVisible={isMediumVisible} setMediumVisible={setMediumVisible}>Medium</Checkbox>
-                <Checkbox keyType="content" isContentVisible={isContentVisible} setContentVisible={setContentVisible}>Content</Checkbox>
-                <Checkbox keyType="term" isTermVisible={isTermVisible} setTermVisible={setTermVisible}>Campaign Term</Checkbox>
+                <Checkbox value={isSourceVisible} setValue={setSourceVisible}>Source</Checkbox>
+                <Checkbox value={isMediumVisible} setValue={setMediumVisible}>Medium</Checkbox>
+                <Checkbox value={isContentVisible} setValue={setContentVisible}>Content</Checkbox>
+                <Checkbox value={isTermVisible} setValue={setTermVisible}>Campaign Term</Checkbox>
             </div>
             <div className={styles.containerRow}>
                 <div className={styles.containerColumn}>
                     <ul className={styles.wrapper}>
                         <li className={styles.row}>
-                            <span className={styles.inputHolder}><Input isRequired={true} url={url} setUrl={onUrlChange} keyType="url">Website URL</Input></span>
+                            <span className={styles.inputHolder}><Input isRequired={true} value={url} setValue={onUrlChange}>Website URL</Input></span>
                         </li>
                         <li className={styles.row}>
-                            <span className={styles.inputHolder}><Input isRequired={true} name={name} setName={onNameChange} keyType="name">Campaign Name</Input></span>
+                            <span className={styles.inputHolder}><Input isRequired={true} value={name} setValue={onNameChange}>Campaign Name</Input></span>
                         </li>
                         <li className={styles.row}>
-                            <span className={`${isSourceVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={true} source={source} setSource={onSourceChange} keyType="source">Campaign Source</Input></span>
+                            <span className={`${isSourceVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={true} value={source} setValue={onSourceChange}>Campaign Source</Input></span>
                         </li>
                     </ul>
                 </div>
                 <div className={styles.containerColumn}>
                     <ul className={styles.wrapper}>
                         <li className={styles.row}>
-                            <span className={`${isMediumVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={true} medium={medium} setMedium={onMediumChange} keyType="medium">Campaign Medium</Input></span>
+                            <span className={`${isMediumVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={true} value={medium} setValue={onMediumChange}>Campaign Medium</Input></span>
                         </li>
                         <li className={styles.row}>
-                            <span className={`${isContentVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={false} content={content} setContent={onContentChange} keyType="content">Campaign Content</Input></span>
+                            <span className={`${isContentVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={false} value={content} setValue={onContentChange}>Campaign Content</Input></span>
                         </li>
                         <li className={styles.row}>
-                            <span className={`${isTermVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={false} term={term} setTerm={onTermChange} keyType="term">Campaign Term</Input></span>
+                            <span className={`${isTermVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={false} value={term} setValue={onTermChange}>Campaign Term</Input></span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div className={styles.mbOnly}>
-                <Checkbox keyType="linkedin" isLinkedinVisible={isLinkedinVisible} setLinkedinVisible={setLinkedinVisible}>Linkedin</Checkbox>
-                <Checkbox keyType="facebook" isFacebookVisible={isFacebookVisible} setFacebookVisible={setFacebookVisible}>Facebook</Checkbox>
-                <Checkbox keyType="twitter" isTwitterVisible={isTwitterVisible} setTwitterVisible={setTwitterVisible}>Twitter</Checkbox>
-                <Checkbox keyType="instagram" isInstagramVisible={isInstagramVisible} setInstagramVisible={setInstagramVisible}>Instagram</Checkbox>
+                <Checkbox value={isLinkedinVisible} setValue={setLinkedinVisible}>Linkedin</Checkbox>
+                <Checkbox value={isFacebookVisible} setValue={setFacebookVisible}>Facebook</Checkbox>
+                <Checkbox value={isTwitterVisible} setValue={setTwitterVisible}>Twitter</Checkbox>
+                <Checkbox value={isInstagramVisible} setValue={setInstagramVisible}>Instagram</Checkbox>
             </div>
             <div>
                 <Button actionHandler={() => genarateURL(url, source, medium, name, term, content)}>Generate URL</Button>
