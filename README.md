@@ -1,5 +1,7 @@
-# utm-resource-generator  [currently in dev]
+# utm-resource-generator 
 Customizable utm resource generator - Next.JS
+
+### Try now - (live site)[https://utm.netlify.app/]
 
 ### Setting up local environment
 
@@ -32,3 +34,8 @@ One of friend uses this on daily basis (almost everyday, multiple times). The re
 ### Initial sketch
 
 [sketch](.github/sketch.jpg)
+
+### App screens 
+
+[ScreenOne](.github/appscreen-1.png)
+[ScreenTwo](.github/appscreen-2.png)
