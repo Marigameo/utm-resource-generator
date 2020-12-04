@@ -19,8 +19,8 @@ export default function Form () {
     //state - input fields
     const [url, setUrl] = useState('')
     const [name, setName] = useState('')
-    const [source, setSource] = useState('')
-    const [medium, setMedium] = useState('')
+    const [source, setSource] = useState('newsletter')
+    const [medium, setMedium] = useState('social')
     const [content, setContent] = useState('')
     const [term, setTerm] = useState('')
 
@@ -31,10 +31,22 @@ export default function Form () {
     const [facebookResult, setFacebookResult] = useState('')
     const [instagramResult, setInstagramResult] = useState('')
 
-    // TODO
-    // const generateDefaults = () => {
+    const clearInputs = () => {
+        setUrl('')
+        setContent('')
+        setMedium('social')
+        setTerm('')
+        setSource('newsletter')
+        setName('')
+    }
 
-    // }
+    const clearResults = () => {
+        setFacebookResult('')
+        setInstagramResult('')
+        setTwitterResult('')
+        setLinkedinResult('')
+        setResult('')
+    }
 
     const onUrlChange = (event) => {
         console.log('inside url change')
@@ -65,29 +77,60 @@ export default function Form () {
     const genarateURL = async (url = '', source = '', medium = '', name = '', term = '', content = '') => {
         console.log('getting inside ge')
         console.log(url)
-        let utm
+        let utm, utmForLinkedIn, utmForFacebook, utmForTwitter, utmForInstagram
         console.log(url, medium, content, source, name, term)
         console.log(typeof url)
         if (url === '' || source === '') {
             alert("Please fill in the required fields - URL & Source can't be empty")
+            clearInputs()
+            return
         }
         if (url && source) {
             utm = `${url}?utm_source=${source}`
+            utmForLinkedIn = `${url}?utm_source=linkedin`
+            utmForFacebook = `${url}?utm_source=facebook`
+            utmForTwitter = `${url}?utm_source=twitter`
+            utmForInstagram = `${url}?utm_source=instagram`
         }
         if (medium != '') {
             utm += `?utm_medium=${medium}`
+            utmForLinkedIn += `?utm_medium=${medium}`
+            utmForFacebook += `?utm_medium=${medium}`
+            utmForTwitter += `?utm_medium=${medium}`
+            utmForInstagram += `?utm_medium=${medium}`
         }
         if (name != '') {
             utm += `?utm_campaign=${name}`
+            utmForLinkedIn += `?utm_campaign=${name}`
+            utmForFacebook += `?utm_campaign=${name}`
+            utmForTwitter += `?utm_campaign=${name}`
+            utmForInstagram += `?utm_campaign=${name}`
         }
         if (term != '') {
             utm += `?utm_term=${term}`
+            utmForLinkedIn += `?utm_term=${term}`
+            utmForFacebook += `?utm_term=${term}`
+            utmForTwitter += `?utm_term=${term}`
+            utmForInstagram += `?utm_term=${term}`
         }
         if (content != '') {
             utm += `?utm_content=${content}`
+            utmForLinkedIn += `?utm_content=${content}`
+            utmForFacebook += `?utm_content=${content}`
+            utmForTwitter += `?utm_content=${content}`
+            utmForInstagram += `?utm_content=${content}`
         }
         console.log(utm)
+        console.log(utmForLinkedIn)
+        console.log(utmForFacebook)
+        console.log(utmForInstagram)
+        console.log(utmForTwitter)
         utm ? setResult(utm) : null
+        utmForFacebook ? setFacebookResult(utmForFacebook) : null
+        utmForLinkedIn ? setLinkedinResult(utmForLinkedIn) : null
+        utmForInstagram ? setInstagramResult(utmForInstagram) : null
+        utmForTwitter ? setTwitterResult(utmForTwitter) : null
+        clearInputs()
     }
 
     return (
@@ -105,10 +148,10 @@ export default function Form () {
                             <span className={styles.inputHolder}><Input isRequired={true} url={url} setUrl={onUrlChange} keyType="url">Website URL</Input></span>
                         </li>
                         <li className={styles.row}>
-                            <span className={`${isSourceVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={true} source={source} setSource={onSourceChange} keyType="source">Campaign Source</Input></span>
+                            <span className={styles.inputHolder}><Input isRequired={true} name={name} setName={onNameChange} keyType="name">Campaign Name</Input></span>
                         </li>
                         <li className={styles.row}>
-                            <span className={styles.inputHolder}><Input isRequired={true} name={name} setName={onNameChange} keyType="name">Campaign Name</Input></span>
+                            <span className={`${isSourceVisible ? styles.visible : styles.hidden}` + " " + styles.inputHolder}><Input isRequired={true} source={source} setSource={onSourceChange} keyType="source">Campaign Source</Input></span>
                         </li>
                     </ul>
                 </div>
@@ -133,22 +176,25 @@ export default function Form () {
                 <Checkbox keyType="instagram" isInstagramVisible={isInstagramVisible} setInstagramVisible={setInstagramVisible}>Instagram</Checkbox>
             </div>
             <div>
-                <Button genarateURL={() => genarateURL(url, source, medium, name, term, content)} />
+                <Button actionHandler={() => genarateURL(url, source, medium, name, term, content)}>Generate URL</Button>
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isLinkedinVisible ? styles.visible : styles.hidden}`}>
                 <ResultArea result={result}>Custom</ResultArea>
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isLinkedinVisible ? styles.visible : styles.hidden}`}>
-                <ResultArea>Linkedin</ResultArea>
+                <ResultArea result={linkedinResult}>Linkedin</ResultArea>
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isFacebookVisible ? styles.visible : styles.hidden}`}>
-                <ResultArea>Facebook</ResultArea>
+                <ResultArea result={facebookResult}>Facebook</ResultArea>
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isTwitterVisible ? styles.visible : styles.hidden}`}>
-                <ResultArea>Twitter</ResultArea>
+                <ResultArea result={twitterResult}>Twitter</ResultArea>
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isInstagramVisible ? styles.visible : styles.hidden}`}>
-                <ResultArea>Instagram</ResultArea>
+                <ResultArea result={instagramResult}>Instagram</ResultArea>
+            </div>
+            <div>
+                <Button actionHandler={() => clearResults()}>Clear Results</Button>
             </div>
         </>
     )
