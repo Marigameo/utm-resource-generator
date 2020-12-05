@@ -10,6 +10,7 @@ export default function ResultArea (props) {
     const copyLink = () => {
         let link = textInput.current.value;
         copyToClipBoard(link);
+        textInput.current.select()
     }
 
     const disappearingMessage = () => {
@@ -21,11 +22,9 @@ export default function ResultArea (props) {
     const copyToClipBoard = async link => {
         try {
             await navigator.clipboard.writeText(link);
-            textInput.current.value = ''
             setCopySuccess('Copied!');
             disappearingMessage()
         } catch (err) {
-            textInput.current.value = ''
             setCopySuccess('Failed to copy!');
             disappearingMessage()
         }
@@ -33,7 +32,7 @@ export default function ResultArea (props) {
 
     return (
         <>
-            <span className={styles.label}>{props.children}</span><textarea row="4" className={styles.textarea} ref={textInput} value={props.result} readOnly></textarea>
+            <span className={styles.label}>{props.children}</span><textarea row="4" className={styles.textarea} ref={textInput} value={props.result} readOnly onFocus={copyLink}></textarea>
             <button onClick={copyLink} className={styles.button}><FaRegClipboard /></button>
             <span className={styles.mgMSG}>{copySuccess}</span>
         </>
