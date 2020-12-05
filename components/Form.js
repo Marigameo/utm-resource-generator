@@ -49,12 +49,10 @@ export default function Form () {
     }
 
     const onUrlChange = (event) => {
-        console.log('inside url change')
         setUrl(event.target.value);
     };
 
     const onNameChange = (event) => {
-        console.log('inside name change')
         setName(event.target.value);
     };
 
@@ -75,11 +73,7 @@ export default function Form () {
     };
 
     const genarateURL = async (url = '', source = '', medium = '', name = '', term = '', content = '') => {
-        console.log('getting inside ge')
-        console.log(url)
         let utm, utmForLinkedIn, utmForFacebook, utmForTwitter, utmForInstagram
-        console.log(url, medium, content, source, name, term)
-        console.log(typeof url)
         if (url === '' || source === '') {
             alert("Please fill in the required fields - URL & Source can't be empty")
             clearInputs()
@@ -120,11 +114,6 @@ export default function Form () {
             utmForTwitter += `?utm_content=${content}`
             utmForInstagram += `?utm_content=${content}`
         }
-        console.log(utm)
-        console.log(utmForLinkedIn)
-        console.log(utmForFacebook)
-        console.log(utmForInstagram)
-        console.log(utmForTwitter)
         utm ? setResult(utm) : null
         utmForFacebook ? setFacebookResult(utmForFacebook) : null
         utmForLinkedIn ? setLinkedinResult(utmForLinkedIn) : null
