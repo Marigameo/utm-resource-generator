@@ -9,7 +9,7 @@ export default function ResultArea (props) {
 
     const copyLink = () => {
         let link = textInput.current.value;
-        copyToClipBoard(link);
+        link.length > 0 && copyToClipBoard(link);
         textInput.current.select()
     }
 
