@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Checkbox from './Checkbox'
 import Input from './Input'
 import styles from '../styles/form.module.css'
@@ -31,6 +31,60 @@ export default function Form () {
     const [facebookResult, setFacebookResult] = useState('')
     const [instagramResult, setInstagramResult] = useState('')
 
+    //state - for shortened urls
+    const [shortresult, setShResult] = useState('')
+    const [shortlinkedinResult, setShLinkedinResult] = useState('')
+    const [shorttwitterResult, setShTwitterResult] = useState('')
+    const [shortfacebookResult, setShFacebookResult] = useState('')
+    const [shortinstagramResult, setShInstagramResult] = useState('')
+
+
+
+    useEffect(() => {
+        shortenURLs();
+    }, [instagramResult])
+
+    const setShortenURLs = (urls) => {
+        console.log('set urls called')
+        console.log(urls)
+        if (urls && urls.length > 0) {
+            urls.map((url) => {
+                if (url.longURL.includes('utm_source=linkedin')) setShLinkedinResult(url.link)
+                else if (url.longURL.includes('utm_source=facebook')) setShFacebookResult(url.link)
+                else if (url.longURL.includes('utm_source=twitter')) setShTwitterResult(url.link)
+                else if (url.longURL.includes('utm_source=newsletter')) setShResult(url.link)
+                else if (url.longURL.includes('utm_source=instagram')) setShInstagramResult(url.link)
+            })
+        }
+    }
+
+    const shortenURLs = () => {
+        let shortenedURLs = []
+        const longURLs = [result, linkedinResult, twitterResult, facebookResult, instagramResult]
+        if (!longURLs.includes('')) {
+            longURLs.map((url) => {
+                fetch('https://api-ssl.bitly.com/v4/shorten', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer 8e45e7f70322088632e51d516690766271468789',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ "long_url": url, "group_guid": "Bjc6h3eJX23" })
+                })// Converting to JSON 
+                    .then(response => response.json())
+
+                    // Displaying results to console 
+                    .then(json => {
+                        shortenedURLs.push({ link: json.link, longURL: json.long_url })
+                        // console.log(shortenedURLs.length)
+                        if (shortenedURLs.length === 5) {
+                            console.log(shortenedURLs)
+                            setShortenURLs(shortenedURLs)
+                        }
+                    })
+            })
+        }
+    }
     const clearInputs = () => {
         setUrl('')
         setContent('')
@@ -46,6 +100,11 @@ export default function Form () {
         setTwitterResult('')
         setLinkedinResult('')
         setResult('')
+        setShFacebookResult('')
+        setShInstagramResult('')
+        setShTwitterResult('')
+        setShLinkedinResult('')
+        setShResult('')
     }
 
     const onUrlChange = (event) => {
@@ -181,6 +240,25 @@ export default function Form () {
             </div>
             <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isInstagramVisible ? styles.visible : styles.hidden}`}>
                 <ResultArea result={instagramResult}>Instagram</ResultArea>
+            </div>
+
+            {/* shorten links */}
+            <br />
+            <h2>Shortened URL'S</h2>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isLinkedinVisible ? styles.visible : styles.hidden}`}>
+                <ResultArea result={shortresult}>Custom</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isLinkedinVisible ? styles.visible : styles.hidden}`}>
+                <ResultArea result={shortlinkedinResult}>Linkedin</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isFacebookVisible ? styles.visible : styles.hidden}`}>
+                <ResultArea result={shortfacebookResult}>Facebook</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isTwitterVisible ? styles.visible : styles.hidden}`}>
+                <ResultArea result={shorttwitterResult}>Twitter</ResultArea>
+            </div>
+            <div className={styles.displayInline + ' ' + styles.mgT20 + ' ' + `${isInstagramVisible ? styles.visible : styles.hidden}`}>
+                <ResultArea result={shortinstagramResult}>Instagram</ResultArea>
             </div>
             <div>
                 <Button actionHandler={() => clearResults()}>Clear Results</Button>
